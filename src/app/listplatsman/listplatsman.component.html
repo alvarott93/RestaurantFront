@@ -1,0 +1,31 @@
+<p>listplatsman works!</p>
+
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <th scope="col">Nom du Plat</th>
+        <th scope="col">Description plat</th>
+        <th scope="col">Prix du plat</th>
+        <th scope="col">Eliminer Plat</th>
+        <th scope="col">Actualiser plat</th>
+    </thead>
+    <tbody>
+            <tr scope="row" *ngFor="let unPlat of listPlats">
+                <td >{{unPlat.nomPlat}}<br> <div  id="{{unPlat.idPlat}}a" style="display: none" >    
+                    <input type="text" class="textblock" placeholder="Ajout nouvel nom" [(ngModel)]="unPlat.nomPlat" />
+                </div></td>
+                <td >{{unPlat.descripPlat}}<div id="{{unPlat.idPlat}}b" style="display: none" >    
+                    <input type="text" class="textblock" placeholder="Ajout une nouvelle description" [(ngModel)]="unPlat.descripPlat" />
+                </div></td>
+                <td >{{unPlat.prixPlat}}<div id="{{unPlat.idPlat}}c" style="display: none" >   
+                    <input type="text" class="textblock" placeholder="Ajout un nouvel prix" [(ngModel)]="unPlat.prixPlat" />
+                </div></td>
+                <td><button type="submit" (click)="deletePlat(unPlat)" class="btn btn-primary">Eliminer</button></td>
+                <td ><button type="submit" value="yes" id="{{unPlat.idPlat}}button" (click)="ShowHideDivmarche(unPlat.idPlat, unPlat)" class="btn btn-primary">Actualiser</button></td>
+            </tr>
+    </tbody>
+
+
+</table>
+
+

@@ -1,0 +1,31 @@
+<p>listusersman works!</p>
+
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <th scope="col">Identifiant utilisateur</th>
+        <th scope="col">Role utilisateur</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col">Mail</th>
+        <th scope="col">Eliminer</th>
+        <th scope="col">Actualiser</th>
+    </thead>
+    <tbody>
+            <tr scope="row" *ngFor="let unUser of listUsers">
+                <td >{{unUser.identifUser}}<div id="{{unUser.idUser}}a" style="display: none" >    <input type="text" class="textblock" placeholder="Ajout un nouvel rol" [(ngModel)]="unUser.identifUser" />  
+                </div></td>
+                <td >{{unUser.roleUser.nomRole}}<br> <div  id="{{unUser.idUser}}b" style="display: none" >   <input type="text" class="textblock" placeholder="Ajout un nouvel rol" [(ngModel)]="unUser.roleUser.nomRole" />  
+                </div></td>
+                <td >{{unUser.nomUser}}<div id="{{unUser.idUser}}a" style="display: none" >    <input type="text" class="textblock" placeholder="Ajout un nouvel rol" [(ngModel)]="unUser.nomUser" />  
+                </div></td>
+                <td >{{unUser.prenomUser}}<div id="{{unUser.idUser}}a" style="display: none" >    <input type="text" class="textblock" placeholder="Ajout un nouvel rol" [(ngModel)]="unUser.prenomUser" />  
+                </div></td>
+                <td >{{unUser.mailUser}}<div id="{{unUser.idUser}}a" style="display: none" >    <input type="text" class="textblock" placeholder="Ajout un nouvel rol" [(ngModel)]="unUser.mailUser" />  
+                </div></td>
+                <td><button type="submit" (click)="deleteUser(unUser)" class="btn btn-primary">Eliminer</button></td>
+                <td ><button type="submit" value="yes" id="{{unUser.idUser}}button" (click)="ShowHideDivmarche(unUser.idUser, unUser)" class="btn btn-primary">Actualiser</button></td>
+            </tr>
+    </tbody>
+
+</table>

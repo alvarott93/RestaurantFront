@@ -1,0 +1,12 @@
+
+
+<h1>Ajouter une nouvelle table</h1>
+<div class="container">
+    <form>
+        <div class="form-group">
+          <input name="nom" type="text" class="form-control" id="nomPlat"  placeholder="Ajoute le numero de places" [(ngModel)]="newTables.capTables">
+          <input name="cap" type="text" class="form-control" id="descripPlat"  placeholder="Ajout le numero de tables avec cette capacité" [(ngModel)]="newTables.numTables">        </div>
+        
+        <button type="submit" (click)="createTable()" class="btn btn-primary">Validation</button>
+      </form>
+    </div>

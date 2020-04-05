@@ -1,0 +1,85 @@
+
+
+
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches" *ngIf="shouldRun">
+    <mat-toolbar color="primary" class="example-toolbar">
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <h1 class="example-app-name">Responsive App</h1>
+    </mat-toolbar>
+  
+    <mat-sidenav-container class="example-sidenav-container"
+                           [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+      <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                   [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+        <mat-nav-list>
+
+         <div *ngIf="clientfun"> 
+          <button type="submit" value="yes" (click)="hacercoman()" class="btn btn-primary">Faire une commande</button>
+          <button type="submit" value="yes" (click)="hacerreser()" class="btn btn-primary">Faire une reservation</button>
+          <button type="submit" value="yes" (click)="listfactures()" class="btn btn-primary">Montrer tous les factures</button>
+          <button type="submit" value="yes" (click)="logout()" class="btn btn-primary">Log out</button>
+        </div> 
+
+        <div *ngIf="managerfun"> 
+          <button type="submit" value="yes" (click)="listplats()" class="btn btn-primary">Montrer tous les plats</button>
+          <button type="submit" value="yes" (click)="ajoutplat()" class="btn btn-primary">Ajouter un plat</button>
+          <button type="submit" value="yes" (click)="listtables()" class="btn btn-primary">Montrer toutes les tables</button>
+          <button type="submit" value="yes" (click)="ajouttable()" class="btn btn-primary">Ajouter une table</button>
+          <button type="submit" value="yes" (click)="listusers()" class="btn btn-primary">Montrer tous les utilisateurs</button>
+          <button type="submit" value="yes" (click)="logout()" class="btn btn-primary">Log out</button>
+        </div> 
+ 
+        </mat-nav-list>
+      </mat-sidenav>
+  
+      <mat-sidenav-content>
+        <div *ngIf="!clientfun && !serveurfun && !managerfun && !createuser">
+        <app-login></app-login> 
+      </div>
+
+      <div *ngIf="!clientfun && !serveurfun && !managerfun && createuser">
+        <app-createuser></app-createuser> 
+      </div>
+
+        <div *ngIf="(clientfun || serveurfun || managerfun) && !outhomepage">
+          <app-homepage></app-homepage>
+      </div>
+      
+      <div *ngIf="clientfun  &&  clientreser && outhomepage && !clientfactu">
+        <app-fairereservation></app-fairereservation> 
+      </div>
+    <div *ngIf="clientfun  &&  clientcomman && outhomepage && !clientfactu">
+        <app-fairecommande></app-fairecommande> 
+      </div>  
+      <div *ngIf="clientfun  && outhomepage && clientfactu">
+        <app-obtainfacture></app-obtainfacture> 
+      </div>
+      <div *ngIf="managerfun  &&  managerlistplats && outhomepage">
+        <app-listplatsman></app-listplatsman> 
+      </div>
+      <div *ngIf="managerfun  &&  managerajoutplat && outhomepage">
+        <app-ajoutplatman></app-ajoutplatman> 
+      </div>
+      <div *ngIf="managerfun  &&  managerlisttables && outhomepage">
+        <app-listtablesman></app-listtablesman> 
+      </div>
+      <div *ngIf="managerfun  &&  managerajouttable && outhomepage">
+        <app-ajouttableman></app-ajouttableman> 
+      </div>
+      <div *ngIf="managerfun  &&  managerlistusers && outhomepage">
+        <app-listusersman></app-listusersman> 
+      </div>
+
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+  
+  <div *ngIf="!shouldRun">Please open on Stackblitz to see result</div>
+  
+  
+  
+  
+  
+  
+  
+

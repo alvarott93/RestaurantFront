@@ -1,0 +1,35 @@
+
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <th scope="col">Numero facture</th>
+        <th scope="col">Prix de la facture</th>
+        <th scope="col">Plats</th>
+    </thead>
+    <tbody>
+            <tr scope="row" *ngFor="let uneFacture of listFactures">
+                <td >{{uneFacture.idfacture}} </td>
+                <td >{{uneFacture.prixTotal}} </td>
+                <td><button type="submit" (click)="platsfacture(uneFacture)" class="btn btn-primary">Montrer plats de la facture</button></td>
+            </tr>
+
+            
+                <tr scope="row" *ngFor="let unPedido of listPedidos">
+                    <td style="background-color: cyan;">Plat: {{unPedido.platPedido.nomPlat}} </td>
+                    <td style="background-color: cyan;">Prix du plat: {{unPedido.platPedido.prixPlat}} </td>
+                    <td style="background-color: cyan;">Quantite: {{unPedido.quantityPlatpedido}} </td>
+                </tr>
+        </tbody>
+
+        
+</table>
+
+
+   <!-- </div>  --> 
+
+
+
+
+
+
+

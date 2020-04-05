@@ -1,0 +1,79 @@
+<p>fairecommande works!</p>
+
+
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <th scope="col">Nom du Plat</th>
+        <th scope="col">Description du Plat</th>
+        <th scope="col">Prix du plat</th>
+        <th scope="col">Ajouter Plat a la liste</th>
+
+    </thead>
+    <tbody>
+            <tr scope="row" *ngFor="let unPlat of listPlats">
+                <td >{{unPlat.nomPlat}} </td>
+                <td >{{unPlat.descripPlat}} </td>
+                <td >{{unPlat.prixPlat}} </td>
+                <td><button type="submit" (click)="ajoutPlat(unPlat)" class="btn btn-primary">Ajout Plat</button></td>
+               
+            </tr>
+    </tbody>
+
+    
+
+        
+</table>
+
+
+<div *ngIf="activsub">
+
+
+<h1 style="font-size:300%; text-align:center; color:blueviolet; margin-bottom:2cm;">Facture</h1>
+
+<table class="table table-striped">
+
+
+    <thead class="thead-dark">
+        <th scope="col">Nom du Plat</th>
+        <th scope="col">Prix du plat</th>
+        <th scope="col">Quantité</th>
+        <th scope="col">Supprimer plat</th>
+
+    </thead>
+
+    <tbody>
+            <tr scope="row" *ngFor="let unPedido of listPedidos">
+                <td >{{unPedido.platPedido.nomPlat}} </td>
+                <td >{{unPedido.platPedido.prixPlat}} </td>
+                <td >{{unPedido.quantityPlatpedido}} </td>
+                <td><button type="submit" (click)="supprimerPlat(unPedido)" class="btn btn-primary">Supprimer Plat</button></td>
+            </tr>
+    </tbody>
+
+    <h1 style="margin-bottom:1cm;">  </h1>
+
+    <h1 style="font-size:150%; color:blueviolet; margin-bottom:0.5cm;">Total prix: {{facture1.prixTotal}} Euros</h1> <br>
+
+
+    
+        <button type="submit" value="yes" (click)="obtenirfacture()" class="btn btn-primary">Finaliser Commande</button>
+      
+    
+
+</table>
+
+</div>  
+
+
+<div *ngIf="activsub2">
+
+    <h1 style="font-size:300%; text-align:center; color:green; margin-bottom:2cm;">Demande faite! Bon ap!</h1>
+
+
+</div>
+
+
+
+
+

@@ -1,0 +1,22 @@
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <th scope="col">Numero de tables</th>
+        <th scope="col">Capacité de la table</th>
+        <th scope="col">Eliminer table</th>
+        <th scope="col">Actualiser table</th>
+    </thead>
+    <tbody>
+            <tr scope="row" *ngFor="let uneTable of listTables">
+                <td >{{uneTable.numTables}}<div id="{{uneTable.idTables}}a" style="display: none" >    
+                    <input type="text" class="textblock" placeholder="Ajout un nouvel numero de tables" [(ngModel)]="uneTable.numTables" />
+                </div></td>
+                <td >{{uneTable.capTables}}<br> <div  id="{{uneTable.idTables}}b" style="display: none" >    
+                </div></td>
+                <td><button type="submit" (click)="deleteTable(uneTable)" class="btn btn-primary">Eliminer</button></td>
+                <td ><button type="submit" value="yes" id="{{uneTable.idTables}}button" (click)="ShowHideDivmarche(uneTable.idTables, uneTable)" class="btn btn-primary">Actualiser</button></td>
+            </tr>
+    </tbody>
+
+
+</table>

@@ -1,0 +1,13 @@
+<p>ajoutplatman works!</p>
+<h1>Ajouter un nouvel plat</h1>
+<div class="container">
+    <form>
+        <div class="form-group">
+          <input name="nom" type="text" class="form-control" id="nomPlat"  placeholder="Ajoute le nom du plat" [(ngModel)]="newPlat.nomPlat">
+          <input name="descr" type="text" class="form-control" id="descripPlat"  placeholder="Ajout la description du plat" [(ngModel)]="newPlat.descripPlat">
+          <input name="prix" type="text" class="form-control" id="prixPlat"  placeholder="Ajout le prix du plat" [(ngModel)]="newPlat.prixPlat">
+        </div>
+        
+        <button type="submit" (click)="createPlat()" class="btn btn-primary">Validation</button>
+      </form>
+    </div>
