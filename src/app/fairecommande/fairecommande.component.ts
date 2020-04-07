@@ -36,15 +36,26 @@ export class FairecommandeComponent implements OnInit {
 
   constructor(private pedidoService: PedidoService, private platService: PlatService, private commandeService: CommandeService, private reservationService: ReservationService, private userService: UserService , private factureService: FactureService ) { }
   obtenirfacture(){
-
-
-
-
     this.activsub=false
-    this.activsub2=true
-    localStorage.setItem("outhome", "no")
-    window.location.href = 'http://localhost:4200/sidebar'
-
+    Swal.fire({
+      title: 'Voulez- vous vraiment finir votre commande?',
+      text: "Votre commande ne pourra plus être modifiée!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, commander!'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          'Commande faite!',
+          'On va preparer votre repas!',
+          'success'
+        )
+        localStorage.setItem("outhome", "no")
+        window.location.href = 'http://localhost:4200/sidebar'
+      }
+    })
   }
 
   supprimerPlat(unPedido) {
@@ -52,12 +63,7 @@ export class FairecommandeComponent implements OnInit {
     this.factureService.create(this.facture1).subscribe(
       data => {
         this.facture1=data;
-
-      } ,error => {    console.log("Ha habido un errooooooooooooooor apertura 2")   },() => {  } )
-
-
-
-
+      } ,error => {    console.log("Ha habido un errooooooooooooooor ")   },() => {  } )
 
 
     console.log("activo funcion eliminar pedido")
@@ -83,14 +89,7 @@ export class FairecommandeComponent implements OnInit {
   ajoutPlat(plat: Plat){
     this.activsub=true
     console.log("el id de la factura presente es "+this.facture1.idfacture) //no esta, hay que cargarla
-
-
     this.facture1.prixTotal=this.facture1.prixTotal+plat.prixPlat; // esto despues de cargarla
-
-
-    
-
-    //this.factureService.create(this.facture1);
         this.factureService.create(this.facture1).subscribe(
       data => {
         this.facture1=data;
@@ -111,9 +110,6 @@ export class FairecommandeComponent implements OnInit {
       this.pedido1.facturePedido=this.facture1;
       console.log(" id facture en pedido"+this.pedido1.facturePedido.idfacture)
       console.log("test 2")
-
-
-
      this.pedidoService.create(this.pedido1).subscribe(    //falta de cerrar subscribe y data!!!
        data => {
          this.pedido1=data
@@ -122,10 +118,7 @@ export class FairecommandeComponent implements OnInit {
         this.pedidoService.getByCom(this.commande1).subscribe(   //pour afficher la nouvelle liste des plats demandés
           data => {
             this.listPedidos=data;
-            
           } ,error => {      console.log("Ha habido un errooooooooooooooor 33333333")  },() => {   //Apertura 3
-        
-
 
        }  // Cierre3
      )
@@ -136,13 +129,9 @@ export class FairecommandeComponent implements OnInit {
   }  // Cierre1
   )
        
-} 
+} // Cierre 0
 )
 
-
-
-
- 
     } // Cierre funcion ajoutplat
 
 
@@ -153,23 +142,11 @@ export class FairecommandeComponent implements OnInit {
   ngOnInit(): void {
 
      if (parseInt(localStorage.getItem("idReserv"))==0) {
-
     console.log("Commande pour emporter!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-
-
     this.activsub=false
     this.activsub2=false
-    console.log("Entro en ngInit faire commande")
-    
-     //Pasos: crear reserva, guardarla, crear comanda y asignar la comanda a la reserva
-     console.log("A")
      this.reservation1=new Reservation();
      this.user1= new User();
-     console.log("B")
-
-
-
-     console.log("C")
     this.userService.getByIdent(localStorage.getItem("user")).subscribe(
       data => {
         
@@ -178,54 +155,23 @@ export class FairecommandeComponent implements OnInit {
         this.user1=data
         
       } ,error => { console.log("Ha habido un errooooooooooooooor") },() => {   //Apertura 1
-        
-      
-
-
-
-    console.log(" despues de buscarlo el user que recupero tiene com identifiant: "+this.user1.identifUser)   
-    
-     //this.reservationService.create(this.reservation1); creo que no sirve
-    
      this.reservationService.create(this.reservation1).subscribe(
        data => {
          this.reservation1=data
        }
        ,error => { 
-           // cas ou le subscribe échoue
         console.log("Ha habido un errooooooooooooooor") 
       },() => {   //Apertura 2
-    
 
-
-
-
-
-
-
-
-     console.log("la reserva creada tiene un id de "+this.reservation1.idReservation)  //FUNCIONA PERFECTOOOO
     this.commande1= new Commande();
     this.commande1.reservCommande=this.reservation1
     this.commande1.indications= "indicacion test";
-    
-
+  
     this.commandeService.create(this.commande1).subscribe(
       data => {
         this.commande1=data;
-        console.log("dans la promise, la indicacion de la commande est: "+this.commande1.indications)
-        console.log("dans la promise, l'id de la commande est: "+this.commande1.idCommande)
-      }
-
-      ,error => {  
-        // cas ou le subscribe échoue
-        console.log("Ha habido un errooooooooooooooor apertura 2") 
+      } ,error => { console.log("Ha habido un errooooooooooooooor apertura 2") 
       },() => {    //Apertura 3
-
-    
-    //console.log("en ngInit, la reserva de la commande despues de ser guardada es: "+this.commande1.reservCommande)
-    //console.log("en ngInit, el ID de la commande tras ser guardada es: "+this.commande1.idCommande)
-    //console.log("en ngInit, la indicacion de la commande tras ser guardada es: "+this.commande1.indications)
 
     this.facture1 = new Facture();
     this.facture1.commandeFacture=this.commande1
@@ -235,8 +181,6 @@ export class FairecommandeComponent implements OnInit {
         this.facture1=data;
 
       } ,error => {    console.log("Ha habido un errooooooooooooooor apertura 2")   },() => {  } )
-    //this.commandeService.create(this.commande1)
-
     this.platService.getAll().subscribe(
       data => {
         this.listPlats = data;
@@ -245,7 +189,7 @@ export class FairecommandeComponent implements OnInit {
 
 
     }    // Cierre 3
-    )    //estos dos cierran el subscribe inicial
+    )    
 
 
     }     // Cierre 2
@@ -258,9 +202,6 @@ export class FairecommandeComponent implements OnInit {
   }  // Cierre del if , de comanda sin reserva
 
   else {  // en el caso de tener una reserva
-
-    console.log("ESTOY EN FAIRECOMMANDE Y HE LLEGADO DESDE UNA RESERVAAAAA")
-
     this.reservationService.getById(parseInt(localStorage.getItem("idReserv"))).subscribe(
       data => {
         this.reservation1=data
@@ -268,7 +209,6 @@ export class FairecommandeComponent implements OnInit {
 
          this.userService.getByIdent(localStorage.getItem("user")).subscribe(
              data => {
-              console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
               this.reservation1.userRes=data
               this.user1=data
         

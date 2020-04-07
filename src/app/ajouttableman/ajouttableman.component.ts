@@ -19,10 +19,22 @@ export class AjouttablemanComponent implements OnInit {
 
 
   createTable(){
-    console.log("bouton en marche")
+    console.log("cap"+this.newTables.capTables)
+    console.log("num"+this.newTables.numTables)
+    if (this.newTables.capTables==null || this.newTables.numTables==null || this.newTables.capTables==0 || this.newTables.numTables==0 ) {
+      this.newTables.capTables=null
+      this.newTables.numTables=null
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Il y a des champs pas remplis ou nulls',
+        footer: '<a href>Pourriez-vous remplir tos les champs?</a>'
+      })
+    }
+
+    else { 
+
     var nume=this.newTables.numTables;
-
-
 
    
     this.tablesService.getByCaptable(this.newTables.capTables).subscribe(
@@ -42,7 +54,7 @@ export class AjouttablemanComponent implements OnInit {
 
           Swal.fire(
             'Table ajoutée!',
-            "table avec capacité "+this.newTables.capTables+' a bien été ajouté!',
+            "table avec capacité "+this.newTables.capTables+' a bien été ajoutée!',
             'success'
           ).then( () => {
           console.log("Validation")
@@ -57,6 +69,7 @@ export class AjouttablemanComponent implements OnInit {
   } 
   
   )
+  }
   }
 
   ngOnInit(): void {

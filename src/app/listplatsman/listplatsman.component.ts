@@ -19,24 +19,23 @@ export class ListplatsmanComponent implements OnInit {
     console.log("bouton delete plat en marche")
 
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: 'Tu es sur?',
+      text: "Cette decision sera irreversible!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Oui, eliminer!'
     }).then((result) => {
       if (result.value) {
-        console.log("voy a borrar plato con id :"+plat.idPlat)
         this.platService.delete(plat.idPlat).subscribe(   //this.medecin
           data => {
             console.log(data)
           }
         )
         Swal.fire(
-          'Plate deleted!',
-          'Your file has been deleted.',
+          'Plat eliminé!',
+          'Le plat a été bien eliminé.',
           'success'
         )
         localStorage.setItem("managerlistplats", "yes")
@@ -62,18 +61,14 @@ export class ListplatsmanComponent implements OnInit {
   
      if (button.style.backgroundColor == "red") {
       console.log("Actualisation de l'information")
-      //this.hopital  = this.hopitalService.getById(idhopital);
-      
-      let pla   //si quiero buscar el objeto hopital con el ID!!!!!!!!!!!!!!!!!!!!!!!!
+      let pla   
        this.platService.getById(idPlat).subscribe(
          data => {
            pla = data
          }
        );
-      
-      console.log("test")
+  
       this.platService.create(plat).subscribe(  
-        //this.hopitalService.update(this.hopitalService.getById(idhopital)).subscribe(
         data => {
           console.log(data)
         }
@@ -81,8 +76,7 @@ export class ListplatsmanComponent implements OnInit {
       localStorage.setItem("managerlistplats", "yes")
       window.location.href = 'http://localhost:4200/'
      }
-  
-    //dvPassport.style.display = btnPassport.value == "Yes" ? "block" : "none";
+
     a.style.display = "block";
     aa.style.display = "block";
     aaa.style.display = "block";
@@ -93,14 +87,9 @@ export class ListplatsmanComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-
-        // this.listHopitaux = this.hopitalService.getAll() esto no funciona, no es como java!!
         this.platService.getAll().subscribe(
           data => {
-               this.listPlats = data;  //cuando tengas data, la metes en listHopitaux. data representa el retour, y lo que hay en la flecha es lo que
-               //vamos a hacer. 
-    
+               this.listPlats = data;  
           }
         )
   }

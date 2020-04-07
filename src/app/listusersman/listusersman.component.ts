@@ -16,6 +16,7 @@ export class ListusersmanComponent implements OnInit {
   listUsers: User[] = [];
   user: User = new User();
   role: Role = new Role();
+  listRoles : Role[] = []
 
   constructor(private userService: UserService, private roleService: RoleService) { }
 
@@ -58,18 +59,23 @@ export class ListusersmanComponent implements OnInit {
     console.log("la clase que paso es: "+idUser)
     var s= idUser.toString()+"a"
     var s2= idUser.toString()+"b"
+    var s3= idUser.toString()+"c"
+    var s4= idUser.toString()+"d"
+    var s5= idUser.toString()+"e"
     var but = idUser.toString()+"button"
     console.log("la clase transformada a string es :"+s)
     console.log("el id del boton  es :"+but)
     var a = document.getElementById(s);
     var aa = document.getElementById(s2);
+    var aaa = document.getElementById(s3);
+    var aaaa = document.getElementById(s4);
+    var aaaaa = document.getElementById(s5);
     var button = document.getElementById(but);
 
-    //buscar id con role
+   
 
     this.roleService.getByrolename(user.roleUser.nomRole).subscribe(
       data => {
-        //this.role=data;
         user.roleUser=data;
       } ,error => {    console.log("Ha habido un errooooooooooooooor apertura 2")   },() => {  
 
@@ -77,19 +83,14 @@ export class ListusersmanComponent implements OnInit {
 
   
      if (button.style.backgroundColor == "red") {
-      console.log("Actualisation de l'information")
-      //this.hopital  = this.hopitalService.getById(idhopital);
       
-      let us  //si quiero buscar el objeto hopital con el ID!!!!!!!!!!!!!!!!!!!!!!!!
+      let us  
        this.userService.getById(idUser).subscribe(
          data => {
            us = data
          }
        );
-      
-      console.log("test")
       this.userService.create(user).subscribe(  
-        //this.hopitalService.update(this.hopitalService.getById(idhopital)).subscribe(
         data => {
           console.log(data)
         }
@@ -100,6 +101,9 @@ export class ListusersmanComponent implements OnInit {
   
     a.style.display = "block";
     aa.style.display = "block";
+    aaa.style.display = "block";
+    aaaa.style.display = "block";
+    aaaaa.style.display = "block";
     button.style.backgroundColor = "red";
     button.textContent= "Confirmer";
   } )
@@ -109,12 +113,23 @@ else { console.log("error writing the role")}
 
   ngOnInit(): void {
 
-    this.userService.getAll().subscribe(
+    this.userService.getAll().subscribe(   
       data => {
-           this.listUsers = data; 
+        this.listUsers=data;
+        
+      } ,error => { console.log("Ha habido un errooooooooooooooor ")  },() => {
 
+        this.roleService.getAll().subscribe(   
+          data => {
+            this.listRoles=data;
+          } ,error => { console.log("Ha habido un errooooooooooooooor  222")  },() => {
+
+          }
+          )
+
+ 
       }
-    )
+      )
+    }
   }
 
-}

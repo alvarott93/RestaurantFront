@@ -19,6 +19,19 @@ export class AjoutplatmanComponent implements OnInit {
 
 
   createPlat(){
+
+    if (this.newPlat.nomPlat==null || this.newPlat.prixPlat==null || this.newPlat.prixPlat<=0.0) {
+      this.newPlat.nomPlat=null
+      this.newPlat.prixPlat=null
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Il y a des champs pas ou mal remplis',
+        footer: '<a href>Pourriez-vous remplir le nom du plat et le prix?</a>'
+      })
+    }
+
+    else { 
     console.log("bouton en marche")
     this.platService.create(this.newPlat).subscribe(
       data => {
@@ -41,6 +54,7 @@ export class AjoutplatmanComponent implements OnInit {
       }
 
     )
+  }
   }
 
   ngOnInit(): void {

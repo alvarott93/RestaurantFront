@@ -28,27 +28,11 @@ export class LoginComponent implements OnInit {
         if (data) {
         this.userLoggedIn = data;
         localStorage.setItem("user", this.userLoggedIn.identifUser);  //REACTIVAR ESTO LUEGO!!!!!!
-
-        
         localStorage.setItem("role", this.userLoggedIn.roleUser.nomRole)  
-       
-
         window.location.href = 'http://localhost:4200/sidebar'  //esto hace falta realmente???
-        
-
-
       }
-
-      ///para ver si hay algo, localstorage.getitem y vemos si hay algo.
-
       },error => {
-        // cas ou le subscribe échoue
       },() => {
-
-        // cas ou ça finit
-        console.log("he pasado por Spring!!!!!!!!!!!!!")
-      console.log(this.userLoggedIn)
-     console.log("user : "+this.userLoggedIn.identifUser+" password : "+this.userLoggedIn.motDePass)
      
       }
     )

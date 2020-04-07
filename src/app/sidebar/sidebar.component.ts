@@ -28,8 +28,6 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-
   this.clientfun = false;
   this.serveurfun = false;
   this.managerfun = false;
@@ -37,23 +35,9 @@ export class SidebarComponent implements OnInit {
   this.clientcomman = false;
   this.createuser=false;
   this.clientfactu=false;
-
-
-console.log("Reseteo los parametros")
-
-this.clientfun = false;
-this.serveurfun = false;
-this.managerfun = false;
-this.clientreser = false;
-this.clientcomman = false;
-this.outhomepage=false;
-
-
-
+  this.outhomepage=false;
 
     if (localStorage.getItem("user")==null && localStorage.getItem("usercrea")=="yes") {
-      //por defecto va a entrar en login
-      console.log("activo el parametro create user!!")
       this.createuser=true;
     }
 
@@ -61,7 +45,6 @@ this.outhomepage=false;
 
      
     if (localStorage.getItem("role")=="Client") {
-      console.log("ng Init sidebar, es un cliente!!")
       this.clientfun = true;
       this.serveurfun = false;
       this.managerfun = false;
@@ -77,7 +60,6 @@ this.outhomepage=false;
     }
 
     else if (localStorage.getItem("role")=="Serveur") {
-      console.log("ng Init sidebar, es un serveur!!")
       this.clientfun = false;
       this.serveurfun = true;
       this.managerfun = false;
@@ -86,7 +68,6 @@ this.outhomepage=false;
     }
 
     else if (localStorage.getItem("role")=="Manager") {
-      console.log("ng Init sidebar, es un manager!!")
       this.clientfun = false;
       this.serveurfun = false;
       this.managerfun = true;
@@ -94,7 +75,6 @@ this.outhomepage=false;
 
 
     if (localStorage.getItem("outhome")=="yes") {
-      console.log(" activo outhome=true, jamas podre volver a home")
       this.outhomepage=true;
     }
 
@@ -126,9 +106,6 @@ this.outhomepage=false;
 
       }// cierre del if que verifica si hay un usuario
 
-      console.log(this.managerlistplats)
-      console.log(this.managerfun)
-      console.log(this.outhomepage)
      }  //esteeeeee cierra  OnInit
 
 
@@ -188,23 +165,10 @@ this.outhomepage=false;
 
     localStorage.setItem("outhome", "yes")
     this.outhomepage=true;
-
-
-
     this.clientreser = false;
-  this.clientcomman = true;
-  this.clientfactu=false;
-  console.log("clientcomman es: "+this.clientcomman)
-  console.log("clientreser es: "+this.clientreser)
-  console.log("vuelvo a la pag original, sin necesidad de un puto link!!!!!!")
-  if ((this.clientfun || this.serveurfun || this.managerfun)  && ( !this.clientreser && !this.clientcomman)) {
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-  }
-  if (this.clientfun  &&  this.clientreser) {
-    console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
-  }
+    this.clientcomman = true;
+    this.clientfactu=false;
     
-    console.log("voy a la pagina de hacer una commande")
 }
 
 listfactures() {
@@ -212,9 +176,7 @@ listfactures() {
   this.clientreser = false;
   this.clientcomman = false;
   this.clientfactu=true;
-
   localStorage.setItem("outhome", "yes")
-
 }
 
 logout() {
@@ -228,11 +190,6 @@ hacerreser() {
   this.clientreser = true;
   this.clientcomman = false;
   this.clientfactu=false;
-  console.log("clientcomman es: "+this.clientcomman)
-  console.log("clientreser es: "+this.clientreser)
-  console.log("esta funcion esta en sidebar, no hace falta redirigir")
-
-  //window.location.href = 'http://localhost:4200/sidebar'
 }
 
   mobileQuery: MediaQueryList;
@@ -249,6 +206,6 @@ hacerreser() {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  shouldRun = true; // [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
+  shouldRun = true; 
 
 }

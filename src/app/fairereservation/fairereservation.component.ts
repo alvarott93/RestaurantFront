@@ -5,6 +5,7 @@ import { ReservationService } from '../services/reservation.service';
 import { Reservation } from '../models/reservation';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-fairereservation',
@@ -72,21 +73,21 @@ export class FairereservationComponent implements OnInit {
     this.tableService.getByCaptable(parseInt(this.numeroPersonas.toString())).subscribe(
       data => {
         this.tables1=data;    //tener cuidado con que de tiempo a meter los datos en caso de fallo, es una promesa!!
-        console.log("he recuperado la table con capacidad"+this.tables1.capTables)
+        //console.log("he recuperado la table con capacidad"+this.tables1.capTables)
       } ,error => {      console.log("Ha habido un errooooooooooooooor 111111111111")  },() => {   // Apertura 1
 
         this.tableService.getByCaptable(parseInt(this.numeroPersonas.toString())+1).subscribe(
           data => {
             this.tables2=data;    //tener cuidado con que de tiempo a meter los datos en caso de fallo, es una promesa!!
             console.log("testo")
-            console.log("he recuperado la table con capacidad"+this.tables2.capTables)
+            //console.log("he recuperado la table con capacidad"+this.tables2.capTables)
           } ,error => {      console.log("Ha habido un errooooooooooooooor 111111111111")  },() => {   // Apertura 1b
             this.numeroPersonas2=this.numeroPersonas+1
             this.tableService.getByCaptable(parseInt(this.numeroPersonas.toString())+2).subscribe(    //Math.floor(this.numeroPersonas+1)  
               data => {
                 this.tables3=data;    //tener cuidado con que de tiempo a meter los datos en caso de fallo, es una promesa!!
                 console.log("testo2")
-                console.log("he recuperado la table con capacidad"+this.tables3.capTables)
+                //console.log("he recuperado la table con capacidad"+this.tables3.capTables)
               } ,error => {      console.log("Ha habido un errooooooooooooooor 111111111111")  },() => {   // Apertura 1c 
 
         this.reservationService.getAll().subscribe(
@@ -139,15 +140,18 @@ export class FairereservationComponent implements OnInit {
         }  // cierre loop j que itera en cada reserva
           //console.log("counter en cada reserva, de veces que se solapan: counter= "+counter+"; counter2="+counter2+"; counter3="+counter3)
           //console.log(" numero de mesas a comparar con counter para la misma capacidad: "+this.tables1.numTables+" , "+this.tables2.numTables+" , "+this.tables3.numTables+" respectivamente")
+           if (this.tables3!=null) { 
            if (counter3<this.tables3.numTables) {  
              this.listHorairesBoolean[i]=true 
-             this.listTableAsignee[i]=3}
+             this.listTableAsignee[i]=3} }
+             if (this.tables2!=null) { 
                if (counter2<this.tables2.numTables) {  
                  this.listHorairesBoolean[i]=true 
-                 this.listTableAsignee[i]=2 }
+                 this.listTableAsignee[i]=2 } }
+                 if (this.tables1!=null) { 
                    if (counter<this.tables1.numTables) {  //tener cuidado aqui porque cuando busque con +2 tengo que haber buscado la table buena
                      this.listHorairesBoolean[i]=true 
-                     this.listTableAsignee[i]=1} 
+                     this.listTableAsignee[i]=1} }
 
 
 
@@ -174,6 +178,23 @@ export class FairereservationComponent implements OnInit {
       console.log("numero de horaires disponibles: "+pos.toString)
       this.selecthor=true
       console.log("activo el selector de horarios para que se puedan ver los horarios dispos")
+
+
+
+      if (this.tables1==null) {
+
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Pas des tables disponibles pour cette numero de personnes, desolé!',
+          footer: '<a href>Pourriez-vous choisir un numero different de personnes?</a>'
+        })
+        this.selecthor=false;
+
+
+
+      }
+
 
 
           } //Cierre 2 promesa

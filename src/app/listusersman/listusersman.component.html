@@ -1,5 +1,3 @@
-<p>listusersman works!</p>
-
 
 <table class="table table-striped">
     <thead class="thead-dark">
@@ -15,13 +13,27 @@
             <tr scope="row" *ngFor="let unUser of listUsers">
                 <td >{{unUser.identifUser}}<div id="{{unUser.idUser}}a" style="display: none" >    <input type="text" class="textblock" placeholder="Ajout un nouvel rol" [(ngModel)]="unUser.identifUser" />  
                 </div></td>
-                <td >{{unUser.roleUser.nomRole}}<br> <div  id="{{unUser.idUser}}b" style="display: none" >   <input type="text" class="textblock" placeholder="Ajout un nouvel rol" [(ngModel)]="unUser.roleUser.nomRole" />  
+
+
+                <td >{{unUser.roleUser.nomRole}}<br> <div  id="{{unUser.idUser}}b" style="display: none" >  
+
+
+                     <select  class="form-control" name="roles" id="roles"  [(ngModel)]="unUser.roleUser.nomRole">
+                        <option *ngFor="let unRole of listRoles" [ngValue]="unRole.nomRole">
+                            {{unRole.nomRole}}
+                        </option>
+                        </select>
+
                 </div></td>
-                <td >{{unUser.nomUser}}<div id="{{unUser.idUser}}a" style="display: none" >    <input type="text" class="textblock" placeholder="Ajout un nouvel rol" [(ngModel)]="unUser.nomUser" />  
+
+
+
+
+                <td >{{unUser.nomUser}}<div id="{{unUser.idUser}}c" style="display: none" >    <input type="text" class="textblock" placeholder="Ajout un nouvel rol" [(ngModel)]="unUser.nomUser" />  
                 </div></td>
-                <td >{{unUser.prenomUser}}<div id="{{unUser.idUser}}a" style="display: none" >    <input type="text" class="textblock" placeholder="Ajout un nouvel rol" [(ngModel)]="unUser.prenomUser" />  
+                <td >{{unUser.prenomUser}}<div id="{{unUser.idUser}}d" style="display: none" >    <input type="text" class="textblock" placeholder="Ajout un nouvel rol" [(ngModel)]="unUser.prenomUser" />  
                 </div></td>
-                <td >{{unUser.mailUser}}<div id="{{unUser.idUser}}a" style="display: none" >    <input type="text" class="textblock" placeholder="Ajout un nouvel rol" [(ngModel)]="unUser.mailUser" />  
+                <td >{{unUser.mailUser}}<div id="{{unUser.idUser}}e" style="display: none" >    <input type="text" class="textblock" placeholder="Ajout un nouvel rol" [(ngModel)]="unUser.mailUser" />  
                 </div></td>
                 <td><button type="submit" (click)="deleteUser(unUser)" class="btn btn-primary">Eliminer</button></td>
                 <td ><button type="submit" value="yes" id="{{unUser.idUser}}button" (click)="ShowHideDivmarche(unUser.idUser, unUser)" class="btn btn-primary">Actualiser</button></td>

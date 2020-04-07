@@ -4,7 +4,7 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches" *ngIf="shouldRun">
     <mat-toolbar color="primary" class="example-toolbar">
       <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-      <h1 class="example-app-name">Responsive App</h1>
+      <h1 class="example-app-name">Bienvenu à l'Auberge de Sarah</h1>
     </mat-toolbar>
   
     <mat-sidenav-container class="example-sidenav-container"
@@ -14,19 +14,22 @@
         <mat-nav-list>
 
          <div *ngIf="clientfun"> 
-          <button type="submit" value="yes" (click)="hacercoman()" class="btn btn-primary">Faire une commande</button>
-          <button type="submit" value="yes" (click)="hacerreser()" class="btn btn-primary">Faire une reservation</button>
-          <button type="submit" value="yes" (click)="listfactures()" class="btn btn-primary">Montrer tous les factures</button>
-          <button type="submit" value="yes" (click)="logout()" class="btn btn-primary">Log out</button>
+          <button type="submit" value="yes" (click)="hacercoman()" class="button button1">Faire une commande pour emporter</button>
+          <button type="submit" value="yes" (click)="hacerreser()" class="button button2">Faire une reservation</button>
+          <button type="submit" value="yes" (click)="listfactures()" class="button button3">Montrer toutes les factures</button>
+          <button type="submit" value="yes" (click)="logout()" class="button button4">Log out</button>
         </div> 
 
         <div *ngIf="managerfun"> 
-          <button type="submit" value="yes" (click)="listplats()" class="btn btn-primary">Montrer tous les plats</button>
-          <button type="submit" value="yes" (click)="ajoutplat()" class="btn btn-primary">Ajouter un plat</button>
-          <button type="submit" value="yes" (click)="listtables()" class="btn btn-primary">Montrer toutes les tables</button>
-          <button type="submit" value="yes" (click)="ajouttable()" class="btn btn-primary">Ajouter une table</button>
-          <button type="submit" value="yes" (click)="listusers()" class="btn btn-primary">Montrer tous les utilisateurs</button>
-          <button type="submit" value="yes" (click)="logout()" class="btn btn-primary">Log out</button>
+          <button type="submit" value="yes" (click)="listplats()" class="button button1">Montrer tous les plats</button>
+          <button type="submit" value="yes" (click)="ajoutplat()" class="button button2">Ajouter un plat</button>
+          <button type="submit" value="yes" (click)="listtables()" class="button button3">Montrer toutes les tables</button>
+          <button type="submit" value="yes" (click)="ajouttable()" class="button button6">Ajouter une table</button>
+          <button type="submit" value="yes" (click)="listusers()" class="button button5">Montrer tous les utilisateurs</button>
+          <button type="submit" value="yes" (click)="logout()" class="button button4">Log out</button>
+        </div> 
+        <div *ngIf="serveurfun"> 
+          <button type="submit" value="yes" (click)="logout()" class="button button4">Log out</button>
         </div> 
  
         </mat-nav-list>

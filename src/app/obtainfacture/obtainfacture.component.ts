@@ -27,21 +27,14 @@ export class ObtainfactureComponent implements OnInit {
       var a=1;
     }
 
-
-
-    
     this.pedidoService.getByCom(facture.commandeFacture).subscribe(
       data => {
         this.listPedidos=data;
-
       } ,error => {    console.log("Ha habido un errooooooooooooooor apertura 2")   },() => {  
 
         if (a==1) {
           this.listPedidos=null
         }
-
-
-
         this.facture1=facture;
 
       }
@@ -50,10 +43,7 @@ export class ObtainfactureComponent implements OnInit {
   }
 
 
-
   ngOnInit(): void {
-
-
     this.factureService.getByIdentUser(localStorage.getItem("user")).subscribe(   
       data => {
         this.listFactures=data;
@@ -61,8 +51,6 @@ export class ObtainfactureComponent implements OnInit {
       } ,error => { console.log("Ha habido un errooooooooooooooor ")  },() => {  // Apertura 2
   }  
   )
-
-
   }
 
 }

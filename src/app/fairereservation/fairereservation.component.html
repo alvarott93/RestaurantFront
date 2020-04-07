@@ -1,47 +1,50 @@
-<p>fairereservation works!</p>
+<p><br><br></p>
+<h1 style="text-align: center; font-family:cursive; color:maroon; text-decoration: dotted;">Numero de personnes</h1> 
+<p><br></p>
 
-<h1 style="margin-bottom:1cm;">  </h1>
-Introduce the number of people
 
-<div  style="display: block" >    <!--style="display: none"--> <!--unHopital.idHopital--> <!--class=unHopital.idHopital--> <!--id="{{unHopital.idHopital}}c"-->
-    <input type="text" class="textblock" placeholder="" [(ngModel)]="numeroPersonas" />
-</div>
+
+    <!--style="display: none"--> <!--unHopital.idHopital--> <!--class=unHopital.idHopital--> <!--id="{{unHopital.idHopital}}c"-->
+    <input type="text" class="center-block"  placeholder="" [(ngModel)]="numeroPersonas" />
+
+
+
 
 <h1 style="margin-bottom:2cm;">  </h1>
 
 
-<div class="ui-g ui-fluid">
-    <div class="ui-g-12 ui-md-4">
-        <h3>Introduce the date</h3>
-        <p-calendar [(ngModel)]="date2"></p-calendar>
-    </div>
 
+
+        <p><br></p>
+<h1 style="text-align: center; font-family:cursive; color:maroon; text-decoration: dotted;">Date</h1> 
+<p><br></p>
+
+        <p-calendar class="center-block" style="text-align: center;" [(ngModel)]="date2"></p-calendar>
 
     <br />
-<button type="submit" value="yes" (click)="traitementheure()" class="btn btn-primary">Heure button</button>
+    <div style="text-align:center;">
+<button class="center-block" style="text-align: center;" type="submit" value="yes" (click)="traitementheure()" class="btn btn-primary">Horaires disponibles pour la date selectionnée</button>
+</div>
 
 
-
+<p><br></p>
 
 <div *ngIf="selecthor">
 <form>
 
-
-    <div class="form-group" >
-      <label for="exampleInputEmail1">Horaires disponibles</label>
-            
-      <div class="form-group">
+<p><br></p>
+<h2 style="text-align: center; font-family:cursive; color:maroon; text-decoration: dotted;">Horaires disponibles</h2> 
         <select class="form-control"  [(ngModel)]="horairechoisi" name="horairechoisi">
         <option *ngFor="let hor of listHorairesdispos; let ind = index"  [ngValue]="hor">  <!--[attr.data-index]="ind"-->
-            {{hor}}
+            {{hor.toString().substr(0, 24)}}
         </option>
         </select>
-      </div>
-       </div>
-      <button type="submit" (click)="continueralacommande()" class="btn btn-primary">Continuer a la commande</button>
-
+        <p><br></p>
+       <div style="text-align:center;">
+      <button class="center-block" style="text-align: center;" type="submit" (click)="continueralacommande()" class="btn btn-primary">Continuer a la commande</button>
+    </div>
 </form>
-</div>
+
       
 
 
